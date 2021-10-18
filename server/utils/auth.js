@@ -7,7 +7,7 @@ export const hashPassword = (password) => {
             if(err) {
                 reject(err)
             }
-            bcrypt.hash(password. salt, (err, hash) => {
+            bcrypt.hash(password, salt, (err, hash) => {
                 if(err){
                     reject(err);
                 }
