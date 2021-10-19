@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { SyncOutlined } from "@ant-design/icons";
@@ -55,7 +55,7 @@ const Login = () => {
           <button
             type="submit"
             className="btn btn-block btn-primary"
-            disabled={!name || !email || !password || loading}
+            disabled={!email || !password || loading}
           >
             {loading ? <SyncOutlined spin /> : "Submit"}
           </button>
