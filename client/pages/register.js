@@ -14,7 +14,7 @@ const Register = () => {
     // console.table({ name, email, password });
     try {
       setLoading(true);
-      const { data } = await axios.post(`http://localhost:8000/api/register`, {
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIB_API}/register`, {
         name,
         email,
         password,
@@ -61,7 +61,7 @@ const Register = () => {
             required
           />
 
-          <button type="submit" className="btn btn-block btn-primary"disabled={!name || !email || !password || loading}>
+          <button type="submit" className="btn btn-block btn-primary" disabled={!name || !email || !password || loading}>
             {loading ? <SyncOutlined spin /> : "Submit"}
           </button>
         </form>
