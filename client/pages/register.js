@@ -65,15 +65,15 @@ const Register = () => {
           <button
             type="submit"
             className="btn btn-block btn-primary"
-            disabled={!name || !email || !password || loading}
+            disabled={!email || !password || loading}
           >
             {loading ? <SyncOutlined spin /> : "Submit"}
           </button>
         </form>
 
         <p className="text-center p-3">
-          Already registered?{" "}
-          <Link href="/login">
+          Not Yet Registered?{" "}
+          <Link href="/registered">
             <a>Login</a>
           </Link>
         </p>
