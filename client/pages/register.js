@@ -1,20 +1,21 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {SyncOutlined} from '@ant-design/icons'
+import { SyncOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.table({ name, email, password });
     try {
       setLoading(true);
-      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API}/register`, {
+      const { data } = await axios.post(`/api/register`, {
         name,
         email,
         password,
@@ -24,7 +25,7 @@ const Register = () => {
       setLoading(false);
     } catch (err) {
       toast(err.response.data);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -61,10 +62,21 @@ const Register = () => {
             required
           />
 
-          <button type="submit" className="btn btn-block btn-primary" disabled={!name || !email || !password || loading}>
+          <button
+            type="submit"
+            className="btn btn-block btn-primary"
+            disabled={!name || !email || !password || loading}
+          >
             {loading ? <SyncOutlined spin /> : "Submit"}
           </button>
         </form>
+
+        <p className="text-center p-3">
+          Already registered?{" "}
+          <Link href="/login">
+            <a>Login</a>
+          </Link>
+        </p>
       </div>
     </>
   );
