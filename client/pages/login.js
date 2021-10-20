@@ -1,13 +1,19 @@
-import {useState } from "react";
+import {useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { SyncOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import {Context} from "../context/index"
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  //access to the state
+  const {state, dispatch} = useContext(Context)
+
+  console.log("STATE", state)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
