@@ -27,7 +27,14 @@ const Login = () => {
       // console.log("REGISTER RESPONSE", data);
      //   toast("Registration successful. Please login.");
     //   setLoading(false);
-    console.log("LOGIN RESPONSE", data)
+    // console.log("LOGIN RESPONSE", data)
+    dispatch({
+      type: "LOGIN",
+      payload: data, 
+    })
+
+    //save user info in loca storage
+    window.localStorate.setItem('user', JSON.stringify(data))
     } catch (err) {
       toast(err.response.data);
       setLoading(false);
