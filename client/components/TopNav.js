@@ -13,7 +13,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
-const { Item, SubMenu } = Menu;
+const { Item, SubMenu,  ItemGroup} = Menu;
 
 const TopNav = () => {
   const [current, setCurrent] = useState("");
@@ -43,7 +43,7 @@ const TopNav = () => {
         icon={<AppstoreOutlined />}
       >
         <Link href="/">
-          <a>Dashboard</a>
+          <a>Code Optimal</a>
         </Link>
       </Item>
 
@@ -75,11 +75,18 @@ const TopNav = () => {
         <SubMenu
           icon={<CoffeeOutlined />}
           title={`Welcome, ${user && user.name}!`}
-          className="float-right"
+          className="ms-auto"
         >
-          <Item onClick={logout} className="float-right">
+          <ItemGroup>
+            <Item className="ms-auto" key="/user">
+              <Link href="/user">
+                <a>Dashboard</a>
+              </Link>
+            </Item>
+          <Item onClick={logout} className="ms-auto">
             Logout
           </Item>
+          </ItemGroup>
         </SubMenu>
       )}
     </Menu>
