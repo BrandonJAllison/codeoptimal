@@ -4,9 +4,9 @@
 import expressJWT from 'express-jwt'
 
 export const requireSignin = expressJWT({
-    getToken: () => requireSignin.cookies.token,
+    getToken: (req, res) => req.cookies.token,
     secret: process.env.JWT_SECRET,
-    algorithms: ["HS265"]
+    algorithms: ["HS256"]
 });
 
 //if this is valid re.use._id
