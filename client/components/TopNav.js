@@ -36,7 +36,7 @@ const TopNav = () => {
   };
 
   return (
-    <Menu mode="horizontal" selectedKeys={[current]}>
+    <Menu  mode="horizontal" selectedKeys={[current]}>
       <Item
         key="/"
         onClick={(e) => setCurrent(e.key)}

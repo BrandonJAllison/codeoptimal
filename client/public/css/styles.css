@@ -3,7 +3,25 @@
 }
 
 .jumbotron{
-    background-image: linear-gradient(to right, #007bff, #000);
+    background:white;
     padding:50px 0;
-    color:#fff;
+    
 }
+
+
+  @font-face {
+    font-family: neon;
+    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+  }
+
+  
+  .flux {
+    font-family: neon;
+    color: #126de6;
+    font-size:2.5vw;
+    line-height: 2.5vw;
+    text-shadow: 2 2 1.5vw #2356FF;
+  }
+
+  
+  
