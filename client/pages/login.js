@@ -91,6 +91,13 @@ const Login = () => {
             <a>Register</a>
           </Link>
         </p>
+
+        <p className="text-center pt-3">
+          <Link href="/forgot-password">
+            <a className="text-danger">Forgot Password</a>
+          </Link>
+        </p>
+
       </div>
     </>
   );
