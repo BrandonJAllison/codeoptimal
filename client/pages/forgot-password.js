@@ -24,7 +24,7 @@ const ForgotPassword = () => {
   // redirect if user is logged in
   useEffect(() => {
     if (user !== null) router.push("/");
-  }, []);
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +64,7 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <h1 className="jumbotron text-center bg-primary square">
+      <h1 className="jumbotron text-center flux square">
         Forgot Password
       </h1>
 

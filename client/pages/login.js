@@ -1,27 +1,29 @@
-import {useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { SyncOutlined } from "@ant-design/icons";
 import Link from "next/link";
-import {Context} from "../context/index";
-import {useRouter} from "next/router";
+import { Context } from "../context";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  //access to the state
-  const {state, dispatch} = useContext(Context)
-  const {user} = state
+  // state
+  const {
+    state: { user },
+    dispatch,
+  } = useContext(Context);
+  // const { user } = state;
 
-  const router = useRouter()
+  // router
+  const router = useRouter();
 
   useEffect(() => {
-    if(user !== null) router.push("/")
-  }, [user])
-
-  console.log("STATE", state)
+    if (user !== null) router.push("/");
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,20 +34,16 @@ const Login = () => {
         email,
         password,
       });
-      // console.log("REGISTER RESPONSE", data);
-     //   toast("Registration successful. Please login.");
-    //   setLoading(false);
-    // console.log("LOGIN RESPONSE", data)
-    dispatch({
-      type: "LOGIN",
-      payload: data, 
-    })
-
-    window.localStorage.setItem('user', JSON.stringify(data))
-    
-    //redirect
-    router.push("/")
-    
+      // console.log("LOGIN RESPONSE", data);
+      dispatch({
+        type: "LOGIN",
+        payload: data,
+      });
+      // save in local storage
+      window.localStorage.setItem("user", JSON.stringify(data));
+      // redirect
+      router.push("/user");
+      // setLoading(false);
     } catch (err) {
       toast(err.response.data);
       setLoading(false);
@@ -85,19 +83,18 @@ const Login = () => {
           </button>
         </form>
 
-        <p className="text-center p-3">
-          Don't have an account?{" "}
+        <p className="text-center pt-3">
+          Not yet registered?{" "}
           <Link href="/register">
             <a>Register</a>
           </Link>
         </p>
 
-        <p className="text-center pt-3">
+        <p className="text-center">
           <Link href="/forgot-password">
-            <a className="text-danger">Forgot Password</a>
+            <a className="text-danger">Forgot password</a>
           </Link>
         </p>
-
       </div>
     </>
   );
