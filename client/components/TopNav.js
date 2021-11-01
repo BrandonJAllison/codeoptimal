@@ -53,7 +53,7 @@ const TopNav = () => {
         <Item
         key="/instructor/course-create"
         onClick={(e) => setCurrent(e.key)}
-        icon={<CarryOutlined />}
+        icon={<CarryOutOutlined />}
         >
         <Link href="/instructor/course-create">
           <a>Create Course</a>
