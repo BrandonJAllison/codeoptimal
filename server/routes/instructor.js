@@ -1,13 +1,14 @@
 import express from "express";
 
 const router = express.Router();
-//import middleware
-import { requireSignin } from "../middleware";
+
+// middleware
+import { requireSignin } from "../middlewares";
 
 // controllers
-import { makeInstructor } from "../controllers/instructor";
+import { makeInstructor, getAccountStatus } from "../controllers/instructor";
 
-
-router.post('/make-intructor', requireSignin, makeInstructor)
+router.post("/make-instructor", requireSignin, makeInstructor);
+router.post("/get-account-satatus", requireSignin, getAccountStatus)
 
 module.exports = router;
