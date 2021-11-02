@@ -8,14 +8,14 @@ import {
   LogoutOutlined,
   UserAddOutlined,
   CarryOutOutlined,
-  TeamOutlined
+  TeamOutlined,
 } from "@ant-design/icons";
 import { Context } from "../context";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
-const { Item, SubMenu,  ItemGroup} = Menu;
+const { Item, SubMenu, ItemGroup } = Menu;
 
 const TopNav = () => {
   const [current, setCurrent] = useState("");
@@ -38,40 +38,37 @@ const TopNav = () => {
   };
 
   return (
-    <Menu  mode="horizontal" selectedKeys={[current]}>
+    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2">
       <Item
         key="/"
         onClick={(e) => setCurrent(e.key)}
         icon={<AppstoreOutlined />}
       >
         <Link href="/">
-          <a>Code Optimal</a>
+          <a>App</a>
         </Link>
       </Item>
+
       {user && user.role && user.role.includes("Instructor") ? (
-
         <Item
-        key="/instructor/course-create"
-        onClick={(e) => setCurrent(e.key)}
-        icon={<CarryOutOutlined />}
+          key="/instructor/course/create"
+          onClick={(e) => setCurrent(e.key)}
+          icon={<CarryOutOutlined />}
         >
-        <Link href="/instructor/course-create">
-          <a>Create Course</a>
-        </Link>
+          <Link href="/instructor/course/create">
+            <a>Create Course</a>
+          </Link>
         </Item>
-
       ) : (
-
         <Item
-        key="/user/become-instructor"
-        onClick={(e) => setCurrent(e.key)}
-        icon={<TeamOutlined />}
+          key="/user/become-instructor"
+          onClick={(e) => setCurrent(e.key)}
+          icon={<TeamOutlined />}
         >
-        <Link href="/user/become-instructor">
-          <a>Become Instructor</a>
-        </Link>
+          <Link href="/user/become-instructor">
+            <a>Become Instructor</a>
+          </Link>
         </Item>
-
       )}
 
       {user === null && (
@@ -101,20 +98,31 @@ const TopNav = () => {
       {user !== null && (
         <SubMenu
           icon={<CoffeeOutlined />}
-          title={`Welcome, ${user && user.name}!`}
+          title={user && user.name}
           className="ms-auto"
         >
           <ItemGroup>
-            <Item className="ms-auto" key="/user">
+            <Item key="/user">
               <Link href="/user">
                 <a>Dashboard</a>
               </Link>
             </Item>
-          <Item onClick={logout} className="ms-auto">
-            Logout
-          </Item>
+            <Item onClick={logout}>Logout</Item>
           </ItemGroup>
         </SubMenu>
+      )}
+
+      {user && user.role && user.role.includes("Instructor") && (
+        <Item
+          key="/instructor"
+          onClick={(e) => setCurrent(e.key)}
+          icon={<TeamOutlined />}
+          className=""
+        >
+          <Link href="/instructor">
+            <a>Instructor</a>
+          </Link>
+        </Item>
       )}
     </Menu>
   );
