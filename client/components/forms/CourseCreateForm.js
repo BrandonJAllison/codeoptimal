@@ -22,7 +22,7 @@ const CourseCreateForm = ({
         <input
           type="text"
           name="name"
-          className="form-control"
+          className="form-control mb-4"
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
@@ -35,7 +35,7 @@ const CourseCreateForm = ({
           cols="7"
           rows="7"
           value={values.description}
-          className="form-control"
+          className="form-control mb-4"
           onChange={handleChange}
         ></textarea>
       </div>
@@ -48,6 +48,7 @@ const CourseCreateForm = ({
               size="large"
               value={values.paid}
               onChange={(v) => setValues({ ...values, paid: !values.paid })}
+              className="mb-4"
             >
               <Option value={true}>Paid</Option>
               <Option value={false}>Free</Option>
@@ -63,6 +64,7 @@ const CourseCreateForm = ({
               onChange={(v) => setValues({ ...values, price: v })}
               tokenSeparators={[,]}
               size="large"
+              className="mb-4"
             >
               {children}
             </Select>
@@ -74,7 +76,7 @@ const CourseCreateForm = ({
         <input
           type="text"
           name="category"
-          className="form-control"
+          className="form-control mb-4"
           placeholder="Category"
           value={values.category}
           onChange={handleChange}
@@ -84,7 +86,7 @@ const CourseCreateForm = ({
       <div className="form-row">
         <div className="col">
           <div className="form-group">
-            <label className="btn btn-outline-secondary btn-block text-left">
+            <label className="btn btn-outline-secondary btn-block text-left mb-4">
               {uploadButtonText}
               <input
                 type="file"
@@ -99,7 +101,7 @@ const CourseCreateForm = ({
 
         {preview && (
           <Badge count="X" onClick={handleImageRemove} className="pointer">
-            <Avatar width={200} src={preview} />
+            <Avatar width={500} src={preview} className="mb-4" />
           </Badge>
         )}
       </div>
@@ -114,6 +116,7 @@ const CourseCreateForm = ({
             type="primary"
             size="large"
             shape="round"
+            className="mb-4"
           >
             {values.loading ? "Saving..." : "Save & Continue"}
           </Button>
