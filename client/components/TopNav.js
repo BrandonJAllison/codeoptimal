@@ -3,7 +3,7 @@ import { Menu } from "antd";
 import Link from "next/link";
 import {
   AppstoreOutlined,
-  CoffeeOutlined,
+  UserOutlined,
   LoginOutlined,
   LogoutOutlined,
   UserAddOutlined,
@@ -45,7 +45,7 @@ const TopNav = () => {
         icon={<AppstoreOutlined />}
       >
         <Link href="/">
-          <a>App</a>
+          <a>Home</a>
         </Link>
       </Item>
 
@@ -97,7 +97,7 @@ const TopNav = () => {
 
       {user !== null && (
         <SubMenu
-          icon={<CoffeeOutlined />}
+          icon={<UserOutlined />}
           title={user && user.name}
           className="ms-auto"
         >

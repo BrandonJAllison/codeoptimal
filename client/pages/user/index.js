@@ -9,7 +9,7 @@ const UserIndex = () => {
 
   return (
     <UserRoute>
-      <h1 className="jumbotron text-center square flux">User dashboard</h1>
+      <h1 className="jumbotron text-center square flux">{user && user.name}'s Learning Dashboard</h1>
     </UserRoute>
   );
 };
