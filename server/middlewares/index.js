@@ -1,5 +1,5 @@
 import expressJwt from "express-jwt";
-import User from "../models/user"
+import User from "../models/user";
 
 export const requireSignin = expressJwt({
   getToken: (req, res) => req.cookies.token,
@@ -8,14 +8,14 @@ export const requireSignin = expressJwt({
 });
 
 export const isInstructor = async (req, res, next) => {
-  try{
-    const user = await User.findById(req.user._id)
-    if(!user.role.includes("Instructory")){
-      return res.sendStatus(403)
-    }else{
+  try {
+    const user = await User.findById(req.user._id).exec();
+    if (!user.role.includes("Instructor")) {
+      return res.sendStatus(403);
+    } else {
       next();
     }
-  }catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
-}
+};
