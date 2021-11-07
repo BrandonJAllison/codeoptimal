@@ -1,46 +1,40 @@
-import {Progress} from 'antd'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+import CourseCard from '../components/Cards/CourseCard'
 
 const Index = () => {
-return(
-    <div>
-        <h1 className="jumbotron flux text-center square">Drone Driver</h1>
-        <div style={{width:'50%'}}>
+  const [courses, setCourses] = useState([])
 
-        <Progress
-      strokeColor={{
-        '0%': '#108ee9',
-        '100%': '#87d068',
-      }}
-      percent={99.9}
-    />
-    <Progress
-      strokeColor={{
-        from: '#108ee9',
-        to: '#87d068',
-      }}
-      percent={99.9}
-      status="active"
-    />
-    <Progress
-      type="circle"
-      strokeColor={{
-        '0%': '#108ee9',
-        '100%': '#87d068',
-      }}
-      percent={90}
-    />
-    <Progress
-      type="circle"
-      strokeColor={{
-        '0%': '#108ee9',
-        '100%': '#87d068',
-      }}
-      percent={100}
-    />
-        
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const {data} = await axios.get('/api/courses')
+      console.log("COURSES", data)
+      setCourses(data)
+    }
+    fetchCourses();
+    console.log('Courses', courses)
+  }, [])
+
+
+return(
+  <div>
+    <h1 className="jumbotron text-center square flux">
+      Drone Drivers
+    </h1>
+    <div className="container-fluid">
+      <div className="row">
+      {courses && courses.map((course) => (
+        <div className="col-md-4">
+      <CourseCard key={course.id} course={course}/>
+      </div>
+  ))}
+      </div>
     </div>
-    </div>
-);
-};
+ 
+  </div>
+)
+
+
+  }
 
 export default Index;

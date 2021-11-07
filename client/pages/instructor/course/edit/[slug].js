@@ -84,13 +84,13 @@ const CourseEdit = () => {
   const handleSubmit = async (e) => {
     // console.log("HANDLE SUBMIT => ", values);
     try {
-      const { data } = await axios.put(`/api/course/${values._id}`, {
+      const { data } = await axios.put(`/api/course/${slug}`, {
         ...values,
         categories: selectedCategories,
       });
       // console.log(data);
       toast("Updated!");
-      // router.push("/instructor");
+      router.push("/instructor");
     } catch (err) {
       console.log(err);
       toast(err.response.data);
@@ -256,8 +256,8 @@ const CourseEdit = () => {
           handleImage={handleImage}
           handleSubmit={handleSubmit}
           categoryList={categoryList}
-          selectedCategories={selectedCategories}
-          setSelectedCategories={setSelectedCategories}
+          // selectedCategories={selectedCategories}
+          // setSelectedCategories={setSelectedCategories}
           preview={preview}
           uploadButtonText={uploadButtonText}
           selectedCategories={selectedCategories}
