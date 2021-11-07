@@ -24,8 +24,8 @@ const CourseCard = ({ course }) => {
         >
           <h2 className="h4 font-weight-bold">{name}</h2>
           <p>by {instructor.name}</p>
-
-          {/* {categories.map((c) => (
+{/* 
+          {categories.map((c) => (
             <Badge
               count={c.name}
               style={{ backgroundColor: "#03a9f4" }}

@@ -190,7 +190,7 @@ const CourseEdit = () => {
     // remove previous
     if (current.video && current.video.Location) {
       const res = await axios.post(
-        `/api/course/remove-video/${values._id}`,
+        `/api/course/remove-video/${values.instructor._id}`,
         current.video
       );
       console.log("REMOVED ===> ", res);
@@ -206,7 +206,7 @@ const CourseEdit = () => {
     videoData.append("courseId", values._id);
     // save progress bar and send video as form data to backend
     const { data } = await axios.post(
-      `/api/course/upload-video/${values._id}`,
+      `/api/course/upload-video/${values.instructor._id}`,
       videoData,
       {
         onUploadProgress: (e) =>
