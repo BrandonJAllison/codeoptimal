@@ -1,6 +1,6 @@
 import { Card, Badge } from "antd";
 import Link from "next/link";
-// import { currencyFormatter } from "../../utils/helpers";
+import { currencyFormatter } from "../../utils/helpers";
 
 const { Meta } = Card;
 
@@ -33,14 +33,14 @@ const CourseCard = ({ course }) => {
             />
           ))} */}
 
-          {/* <h4 className="pt-2">
+          <h4 className="pt-2">
             {paid
               ? currencyFormatter({
                   amount: price,
                   currency: "usd",
                 })
               : "Free"}
-          </h4> */}
+          </h4>
         </Card>
       </a>
     </Link>
