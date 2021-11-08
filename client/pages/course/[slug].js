@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useRouter} from 'next/router'
 import SingleCourseJumbotron from '../../components/Cards/SingleCourseJumbotron'
 import PreviewModal from '../../components/modal/PreviewModal.';
-
+import  SingleCourseLessons  from '../../components/Cards/SingleCourseLessons';
 const SingleCourse = ({course}) => {
   //state
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +20,12 @@ return(
       <SingleCourseJumbotron course={course} showModal={showModal} setShowModal={setShowModal} preview={preview} setPreview={setPreview}/>
 
         <PreviewModal showModal={showModal} setShowModal={setShowModal} preview={preview}/>  
+
+      {course.lessons && (
+
+        <SingleCourseLessons lessons={course.lessons} setPreview={setPreview} showModal={showModal} setShowModal={setShowModal} />
+      
+      )}
   </>
 )
 
