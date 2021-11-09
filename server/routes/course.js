@@ -20,7 +20,9 @@ import {
   updateLesson,
   publishCourse,
   unpublishCourse,
-  courses
+  courses,
+  checkEnrollment,
+  freeEnrollment,
 } from "../controllers/course";
 
 router.get('/courses', courses)
@@ -50,7 +52,8 @@ router.post("/course/lesson/:slug/:instructorId", requireSignin, addLesson);
 router.put("/course/:slug/:lessonId", requireSignin, removeLesson);
 router.put("/course/lesson/:slug/:lessonId", requireSignin, updateLesson);
 
-
-
+router.get('/check-enrollment/:courseId', requireSignin, checkEnrollment)
+//Enrollment
+router.post('/free-enrollment/:courseId', requireSignin, freeEnrollment)
 module.exports = router;
 

@@ -24,7 +24,7 @@ return(
     <div className="container-fluid">
       <div className="row">
       {courses && courses.map((course) => (
-        <div className="col-md-4">
+        <div className="col-md-3">
       <CourseCard key={course.id} course={course}/>
       </div>
   ))}

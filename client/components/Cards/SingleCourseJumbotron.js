@@ -1,10 +1,11 @@
-import SingleCourse from "../../pages/course/[slug]";
+// import SingleCourse from "../../pages/course/[slug]";
 import { currencyFormatter } from "../../utils/helpers";
-import {Badge, Modal} from 'antd'
+import {Badge, Modal, Button} from 'antd'
 import ReactPlayer from 'react-player'
+import { LoadingOutlined, SafetyOutlined } from "@ant-design/icons";
 
 
-const SingleCourseJumotron = ({course, showModal, setShowModal, preview, setPreview}) => {
+const SingleCourseJumotron = ({course, showModal, setShowModal, preview, user, setPreview, handlePaidEnrollment, handleFreeEnrollment, loading, enrolled, setEnrolled}) => {
 
     const {
         name, 
@@ -15,7 +16,7 @@ const SingleCourseJumotron = ({course, showModal, setShowModal, preview, setPrev
         image, 
         price, 
         paid, 
-        category
+        category,
       } = course;
 
 return(
@@ -55,6 +56,30 @@ return(
               <img src={image.Location} alt={name} className="img img-fluid"/>
               </>
             )}
+            {loading ? (
+              <div className="d-flex justify-content-center">
+                <LoadingOutlined className="h1 text-danger"/>
+              </div>
+            ) : (
+              <div className="d-flex justify-content-center">
+                <Button
+                className="mb-3 mt-3"
+                type="danger"
+                shape="round"
+                icon={<SafetyOutlined/>}
+                size="larger"
+                disabled={loading}
+                onClick={paid ? handlePaidEnrollment : handleFreeEnrollment}
+                >
+                  {user 
+                  ? enrolled.status 
+                    ? "Go to Course"
+                    : "Enroll"
+                  : "Login to Enroll"}
+                  </Button>
+                  </div>
+            )}
+            
           </div>
         
       </div>
