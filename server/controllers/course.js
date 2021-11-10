@@ -340,3 +340,43 @@ export const freeEnrollment = async (req, res) => {
     return res.status(400).send('Enrollment Create Failed')
   }
 }
+
+export const userCourses = async (req, res) => {
+  const user = await User.findById(req.user._id).exec();
+  const courses = await Course.find({_id:{$in:user.courses}}).populate('instructor', '_id name').exec()
+  res.json(courses);
+}
+
+
+
+export const markCompleted = async (req, res) => {
+  const { courseId, lessonId } = req.body;
+  // console.log(courseId, lessonId);
+  // find if user with that course is already created
+  const existing = await Completed.findOne({
+    user: req.user._id,
+    course: courseId,
+  }).exec();
+
+  if (existing) {
+    // update
+    const updated = await Completed.findOneAndUpdate(
+      {
+        user: req.user._id,
+        course: courseId,
+      },
+      {
+        $addToSet: { lessons: lessonId },
+      }
+    ).exec();
+    res.json({ ok: true });
+  } else {
+    // create
+    const created = await new Completed({
+      user: req.user._id,
+      course: courseId,
+      lessons: lessonId,
+    }).save();
+    res.json({ ok: true });
+  }
+};
