@@ -24,7 +24,8 @@ import {
   checkEnrollment,
   freeEnrollment,
   userCourses,
-  markCompleted
+  markCompleted,
+  listCompleted
 } from "../controllers/course";
 
 router.get('/courses', courses)
@@ -63,6 +64,8 @@ router.get("/user/course/:slug", requireSignin, read, isEnrolled);
 
 //mark as complete
 router.post('/mark-completed', requireSignin, markCompleted);
+router.post('/list-completed', requireSignin, listCompleted);
+
 module.exports = router;
 
 

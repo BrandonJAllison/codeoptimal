@@ -4,6 +4,7 @@ import Course from "../models/course";
 import slugify from "slugify";
 import {readFileSync} from 'fs'
 import User from "../models/user"
+import Completed from'../models/completed';
 
 const awsConfig = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -380,3 +381,12 @@ export const markCompleted = async (req, res) => {
     res.json({ ok: true });
   }
 };
+
+export const listCompleted = async (req, res) => {
+  try{
+    const list = await Completed.findOne({user: req.user._id, course: req.body.courseId}).exec()
+    list && res.json(list.lessons)
+  }catch(err){
+    console.log(err)
+  }
+}

@@ -9,6 +9,8 @@ import {
   PlayCircleOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  CheckCircleFilled,
+  MinusCircleFilled
 } from "@ant-design/icons";
 
 const { Item } = Menu;
@@ -18,6 +20,7 @@ const SingleCourse = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [course, setCourse] = useState({ lessons: [] });
+  const [completedLessons, setCompletedLessons] = useState([]);
 
   // router
   const router = useRouter();
@@ -27,10 +30,21 @@ const SingleCourse = () => {
     if (slug) loadCourse();
   }, [slug]);
 
+  useEffect(() => {
+    if(course) loadCompletedLessons()
+  },[course])
+
   const loadCourse = async () => {
     const { data } = await axios.get(`/api/user/course/${slug}`);
     setCourse(data);
   };
+
+  const loadCompletedLessons = async () => {
+  const {data} = await axios.post(`/api/list-completed`, {courseId: course._id});
+  console.log("Completed Lessons =>", data)
+  setCompletedLessons(data)
+};
+
 
   const markCompleted = async () => {
     const { data } = await axios.post(`/api/mark-completed`, {
@@ -42,8 +56,10 @@ const SingleCourse = () => {
 
   return (
     <StudentRoute>
+   
+
       <div style={{display:'flex'}}>
-        <div style={{ maWidth: 320 }}>
+        <div style={{ width:'20%' }}>
           <Button
             onClick={() => setCollapsed(!collapsed)}
             className="text-primary mt-1 btn-block mb-2"
@@ -62,7 +78,7 @@ const SingleCourse = () => {
                 key={index}
                 icon={<Avatar>{index + 1}</Avatar>}
               >
-                {lesson.title.substring(0, 30)}
+                {lesson.title.substring(0, 30)} {completedLessons.includes(lesson._id) ? <CheckCircleFilled className="float-right text-primary ml-2" style={{marginTop:"13px"}}/> : <MinusCircleFilled className="float-right text-danger ml-2" style={{marginTop:"13px"}} />}
               </Item>
             ))}
           </Menu>
@@ -71,11 +87,15 @@ const SingleCourse = () => {
         <div className="col">
           {clicked !== -1 ? (
             <>
-              <div className="col alert alert-primary square">
-                <b>{course.lessons[clicked].title.substring(0, 30)}</b>
-                <span className="float-right pointer" onClick={markCompleted}>
+              <div className="col square" style={{display:'flex', flexDirection:'column', background:'black'}} >
+                <b style={{color:'white'}}>{course.lessons[clicked].title.substring(0, 30)}</b>
+               {completedLessons.includes(course.lessons[clicked]._id) ?  
+               <span className="float-right pointer p-3" style={{color:'white'}} onClick={markCompleted}>
+                  Mark as incompleted
+                </span> : 
+                 <span className="float-right pointer p-3" style={{color:'white'}} onClick={markCompleted}>
                   Mark as completed
-                </span>
+                </span>}
               </div>
 
               {course.lessons[clicked].video &&
@@ -83,10 +103,11 @@ const SingleCourse = () => {
                   <>
                     <div className="wrapper">
                       <ReactPlayer
+                      style={{padding: '15px'}}
                         className="player"
                         url={course.lessons[clicked].video.Location}
-                        width="80%"
-                        height="80%"
+                        width="100%"
+                        height="70vh"
                         controls
                       />
                     </div>
