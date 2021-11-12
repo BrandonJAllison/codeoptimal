@@ -13,12 +13,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import TopNav from '../components/TopNav.js';
 import {Provider} from "../context";
 
+
 function MyApp ({Component,pageProps}) {
     return(
     <Provider>
     <ToastContainer position="top-center"/>
     <TopNav/>
-    <Component {...pageProps} />
+    <Component {...pageProps} style={{background:'#333'}} />
     </Provider>
     );
 };

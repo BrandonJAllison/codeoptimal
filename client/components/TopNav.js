@@ -38,58 +38,65 @@ const TopNav = () => {
   };
 
   return (
-    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2">
+    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2" style={{background:'#001529'}}>
       <Item
+        style={{color:'whitesmoke'}}
         key="/"
         onClick={(e) => setCurrent(e.key)}
         icon={<AppstoreOutlined />}
       >
-        <Link href="/">
-          <a>Home</a>
+        <Link  href="/">
+          <a style={{color:'whitesmoke'}}>Home</a>
         </Link>
       </Item>
 
-      {user && user.role && user.role.includes("Instructor") ? (
+      {/* {user && user.role && user.role.includes("Instructor") ? (
         <Item
+          style={{color:'whitesmoke'}}
           key="/instructor/course/create"
           onClick={(e) => setCurrent(e.key)}
           icon={<CarryOutOutlined />}
         >
           <Link href="/instructor/course/create">
-            <a>Create Course</a>
+            <a style={{color:'whitesmoke'}} >Create Course</a>
           </Link>
         </Item>
       ) : (
         <Item
+          style={{color:'whitesmoke'}}
           key="/user/become-instructor"
           onClick={(e) => setCurrent(e.key)}
           icon={<TeamOutlined />}
         >
           <Link href="/user/become-instructor">
-            <a>Become Instructor</a>
+            <a style={{color:'whitesmoke'}}>Become Instructor</a>
           </Link>
         </Item>
-      )}
+      )} */}
 
       {user === null && (
         <>
           <Item
+            className="ms-auto"
+            style={{color:'whitesmoke'}}
             key="/login"
             onClick={(e) => setCurrent(e.key)}
             icon={<LoginOutlined />}
           >
             <Link href="/login">
-              <a>Login</a>
+              <a style={{color:'whitesmoke'}}>Login</a>
             </Link>
           </Item>
 
           <Item
+            className="ml-auto"
+            style={{color:'whitesmoke'}}
             key="/register"
             onClick={(e) => setCurrent(e.key)}
             icon={<UserAddOutlined />}
           >
             <Link href="/register">
-              <a>Register</a>
+              <a style={{color:'whitesmoke'}}>Register</a>
             </Link>
           </Item>
         </>
@@ -97,14 +104,15 @@ const TopNav = () => {
 
       {user !== null && (
         <SubMenu
+        style={{color:"whitesmoke"}}
           icon={<UserOutlined />}
           title={user && user.name}
           className="ms-auto"
         >
           <ItemGroup>
-            <Item key="/user">
+            <Item key="/user" style={{color:"whitesmoke"}}>
               <Link href="/user">
-                <a>Dashboard</a>
+                <a style={{color:'black'}}>Dashboard</a>
               </Link>
             </Item>
             <Item onClick={logout}>Logout</Item>
@@ -114,13 +122,14 @@ const TopNav = () => {
 
       {user && user.role && user.role.includes("Instructor") && (
         <Item
+          style={{color:'whitesmoke'}}
           key="/instructor"
           onClick={(e) => setCurrent(e.key)}
           icon={<TeamOutlined />}
           className=""
         >
           <Link href="/instructor">
-            <a>Instructor</a>
+            <a style={{color:'whitesmoke'}}>Admin</a>
           </Link>
         </Item>
       )}

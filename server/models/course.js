@@ -50,10 +50,6 @@ const courseSchema = new mongoose.Schema(
       type: Number,
       default: 9.99,
     },
-    completed: {
-      type:Number,
-      default: 0
-    },
     image: {},
     category: String,
     published: {

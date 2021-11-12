@@ -82,7 +82,7 @@ const Register = () => {
           </button>
         </form>
 
-        <p className="text-center p-3">
+        <p className="text-center p-3" style={{color:'whitesmoke'}}>
           Already Registered?{" "}
           <Link href="/login">
             <a>Login</a>

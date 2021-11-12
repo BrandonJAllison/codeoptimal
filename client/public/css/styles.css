@@ -1,10 +1,16 @@
+body{
+  background: #333;
+  padding:0;
+  margin:0;
+}
+
 .square {
     border-radius:0px;
 }
 
 .jumbotron{
-    background:darkgray;
-    padding:25px 0;   
+    background:#001529;
+    padding:35px 0;   
 }
 
 
@@ -25,6 +31,26 @@
 
   .pointer{
     cursor: pointer;
+  }
+
+  .ant-list-item-meta-title{
+    color:whitesmoke;
+  }
+
+  .enroll{
+    width: 50%;
+  }
+
+  .enroll svg{
+    margin-top: -5px;
+  }
+
+  span.ant-progress-text{
+    color:white!important;
+  }
+
+  .ant-progress-circle{
+    color:white!important;
   }
 
 

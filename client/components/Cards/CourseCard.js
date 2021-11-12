@@ -13,6 +13,7 @@ const CourseCard = ({ course }) => {
       <a>
         <Card
           className="mb-4"
+          style={{background:'whitesmoke'}}
           cover={
             <img
               src={image && image.Location}

@@ -21,13 +21,13 @@ const InstructorIndex = () => {
 
   return (
     <InstructorRoute>
-      <h1 className="jumbotron text-center flux square">Instructor Dashboard</h1>
+      <h1 className="jumbotron text-center flux square">Admin Dashboard</h1>
       {/* <pre>{JSON.stringify(courses, null, 4)}</pre> */}
 
       {courses &&
         courses.map((course) => (
           <>
-            <div className="media pt-2" style={{display:'flex'}}>
+            <div className="media pt-2" >
               <Avatar
                 size={80}
                 style={{marginRight:'20px'}}
@@ -42,10 +42,10 @@ const InstructorIndex = () => {
                       className="pointer"
                     >
                       <a className="mt-2 text-primary">
-                        <h5 className="pt-2">{course.name}</h5>
+                        <h5 className="pt-2" style={{color:'whitesmoke'}}>{course.name}</h5>
                       </a>
                     </Link>
-                    <p style={{ marginTop: "-10px" }}>
+                    <p style={{ marginTop: "-10px", color:'whitesmoke' }}>
                       {course.lessons.length} Lessons
                     </p>
 
@@ -68,13 +68,13 @@ const InstructorIndex = () => {
                     {course.published ? (
                       <Tooltip title="Published">
                       <div>
-                        <CheckCircleOutlined className="h5 pointer text-success" />
+                        <CheckCircleOutlined className="h5 pointer text-success ml-auto" />
                       </div>
                       </Tooltip>
                     ) : (
                       <Tooltip title="Unpublished">
                       <div>
-                        <CloseCircleOutlined className="h5 pointer text-warning" />
+                        <CloseCircleOutlined className="h5 pointer text-warning ml-auto" />
                       </div>
                       </Tooltip>
                     )}

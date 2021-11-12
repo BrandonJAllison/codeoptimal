@@ -109,13 +109,13 @@ const SingleCourse = () => {
           <Menu
             defaultSelectedKeys={[clicked]}
             inlineCollapsed={collapsed}
-            style={{ height: "80vh", overflow: "scroll" }}
+            style={{ height: "80vh", overflow: "hidden", color:'white', background:'#333', border:'none' }}
           >
             {course.lessons.map((lesson, index) => (
               <Item
                 onClick={() => setClicked(index)}
                 key={index}
-                icon={<Avatar>{index + 1}</Avatar>}
+                icon={<Avatar style={{background:"#0D6EFD"}}>{index + 1}</Avatar>}
               >
                 {lesson.title.substring(0, 30)} {completedLessons.includes(lesson._id) ? <CheckCircleFilled className="float-right text-primary ml-2" style={{marginTop:"13px"}}/> : <MinusCircleFilled className="float-right text-danger ml-2" style={{marginTop:"13px"}} />}
               </Item>
@@ -126,17 +126,18 @@ const SingleCourse = () => {
         <div className="col">
           {clicked !== -1 ? (
             <>
-              <div className="col square" style={{background:'gray'}}>
-               
+              <div className="col square" style={{background:'#001529', padding:'25px', display:'flex'}}>
+               <div style={{display:'flex', flexDirection:'column'}}>
                 <b style={{color:'white'}}>{course.lessons[clicked].title.substring(0, 30)}</b>
                {completedLessons.includes(course.lessons[clicked]._id) ?  
-               <span className="float-right pointer p-3" style={{color:'white'}} onClick={markIncomplete}>
+               <span className="float-right pointer" style={{color:'white'}} onClick={markIncomplete}>
                   Mark as incompleted
                 </span> : 
-                 <span className="float-right pointer p-3" style={{color:'white'}} onClick={markCompleted}>
+                 <span className="float-right pointer" style={{color:'white'}} onClick={markCompleted}>
                   Mark as completed
                 </span>}
-                <Progress type="circle" percent={progress} width={40} />
+                </div>
+                <Progress type="circle" style={{color:'white'}} percent={progress} width={60} className="ms-auto"/>
               </div>
 
               {course.lessons[clicked].video &&
@@ -165,7 +166,7 @@ const SingleCourse = () => {
             <div className="d-flex justify-content-center p-5">
               <div className="text-center p-5">
                 <PlayCircleOutlined className="text-primary display-1 p-5" />
-                <p className="lead">Clcik on the lessons to start learning</p>
+                <p className="lead" style={{color:'whitesmoke'}}>Clcik on the lessons to start learning</p>
               </div>
             </div>
           )}

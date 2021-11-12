@@ -2,9 +2,11 @@ import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { SyncOutlined } from "@ant-design/icons";
+import { Spin, Space } from 'antd';
 import Link from "next/link";
 import { Context } from "../context";
 import { useRouter } from "next/router";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -79,11 +81,11 @@ const Login = () => {
             className="btn btn-block btn-primary"
             disabled={!email || !password || loading}
           >
-            {loading ? <SyncOutlined spin /> : "Submit"}
+            {loading ? <Spin /> : "Login"}
           </button>
         </form>
 
-        <p className="text-center pt-3">
+        <p className="text-center pt-3" style={{color:'whitesmoke'}}>
           Not yet registered?{" "}
           <Link href="/register">
             <a>Register</a>
@@ -96,6 +98,7 @@ const Login = () => {
           </Link>
         </p>
       </div>
+      
     </>
   );
 };

@@ -21,13 +21,13 @@ const SingleCourseJumotron = ({course, showModal, setShowModal, preview, user, s
 
 return(
     <div className="jumbotron square">
-        <div className="row p-3">
-          <div className="col-md-8">
-           <h1 className="text-light font-weight-bold">{name}</h1>
-           <p className="lead">{description &&  description.substring(0,160)}...</p>
+        <div className="row p-3" style={{marginRight:'0'}}>
+          <div className="col-md-8" style={{paddingTop: '50px', paddingLeft:'100px'}}>
+           <h1 style={{color:'whitesmoke'}} className="text-light font-weight-bold">{name}</h1>
+           <p style={{color:'whitesmoke'}} className="lead">{description &&  description.substring(0,160)}...</p>
             <Badge count={category} style={{backgroundColor:'#03a9f4'}} className="pb-4 mr-2"/>
-            <p>Created by {instructor.name}</p>
-            <p>Last Updated {new Date(updatedAt).toLocaleString()}</p>
+            <p style={{color:'whitesmoke'}}>Created by {instructor.name}</p>
+            <p style={{color:'whitesmoke'}}>Last Updated {new Date(updatedAt).toLocaleString()}</p>
             <h4 className="text-light">
              {paid
              ?currencyFormatter({
@@ -63,7 +63,7 @@ return(
             ) : (
               <div className="d-flex justify-content-center">
                 <Button
-                className="mb-3 mt-3"
+                className="mb-3 mt-3 enroll"
                 type="danger"
                 shape="round"
                 icon={<SafetyOutlined/>}

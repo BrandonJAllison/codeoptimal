@@ -41,10 +41,10 @@ const UserIndex = () => {
               <div className="row">
                 <div className="col">
                   <Link href={`/user/course/${course.slug}`} className="pointer">
-                    <a><h5 className="mt-2 text-primary">{course.name}</h5></a>
+                    <a><h5 className="mt-2" style={{color:'whitesmoke'}}>{course.name}</h5></a>
                   </Link>
-                  <p style={{marginTop:'10px'}}>{course.lessons.length} Lessons</p>
-                  <p className="text-muted" style={{marginTop: '-15px', fontSize: '12px'}}>
+                  <p style={{marginTop:'10px', color:'whitesmoke'}}>{course.lessons.length} Lessons</p>
+                  <p className="text-muted" style={{marginTop: '-15px', fontSize: '12px', color:'whitesmoke'}}>
                     By {course.instructor.name}
                   </p>
                 </div>
