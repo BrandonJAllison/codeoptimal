@@ -117,7 +117,10 @@ const SingleCourse = () => {
                 key={index}
                 icon={<Avatar style={{background:"#0D6EFD"}}>{index + 1}</Avatar>}
               >
-                {lesson.title.substring(0, 30)} {completedLessons.includes(lesson._id) ? <CheckCircleFilled className="float-right text-primary ml-2" style={{marginTop:"13px"}}/> : <MinusCircleFilled className="float-right text-danger ml-2" style={{marginTop:"13px"}} />}
+                {lesson.title.substring(0, 30)} {completedLessons.includes(lesson._id) ? 
+                <CheckCircleFilled className="float-right text-primary ml-2" style={{marginTop:"13px"}}/>
+                 : 
+                <MinusCircleFilled className="float-right text-danger ml-2" style={{marginTop:"13px"}} />}
               </Item>
             ))}
           </Menu>
@@ -166,7 +169,7 @@ const SingleCourse = () => {
             <div className="d-flex justify-content-center p-5">
               <div className="text-center p-5">
                 <PlayCircleOutlined className="text-primary display-1 p-5" />
-                <p className="lead" style={{color:'whitesmoke'}}>Clcik on the lessons to start learning</p>
+                <p className="lead" style={{color:'whitesmoke'}}>Click on the lessons to start learning</p>
               </div>
             </div>
           )}
